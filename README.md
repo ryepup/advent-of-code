@@ -21,3 +21,7 @@ Run tests using vscode task runner or `dotnet run --project Advent2018/Tests/Tes
 * http://dungpa.github.io/fsharp-cheatsheet/
 * https://github.com/fsprojects/awesome-fsharp
 * https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/
+
+## TODO
+
+* figure out how to get ionide to recognize modules from other files
