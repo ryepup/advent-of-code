@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Day1.fs" />
     <Compile Include="Advent2018.fs" />
     <None Include="Script.fsx" />
   </ItemGroup>
