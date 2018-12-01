@@ -9,5 +9,5 @@ let tests =
   testList "setup" [
     testCase "can reference code in another project" <| fun _ ->
       let sut = Advent2018()
-      Expect.equal "X is static" "F#" sut.X
+      sut.X |> Expect.equal "X is static" "F#"
   ]
