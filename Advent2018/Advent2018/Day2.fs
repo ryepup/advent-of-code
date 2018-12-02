@@ -3,6 +3,7 @@ open System.IO
 open System
 
 module Day2 =
+
     let ids =
         "Advent2018/Advent2018/day2.txt"
         |> File.ReadAllLines
@@ -25,6 +26,10 @@ module Day2 =
                 (fun (value, pred) -> if pred input then value + 1 else value)
             ) (Seq.ofList [0; 0])
         |> Seq.reduce ( * )
+
+    let solve1 =
+        lazy (checksum ids)
+
 
     let hasOneCharDifferent a b =
         Seq.map2
@@ -59,6 +64,8 @@ module Day2 =
             | None -> failwith "no ids found"
             | Some (a,b) -> findCommonId a b
 
+    let solve2 =
+        lazy (findCode ids)
 
 //findCode ids
 // guess 1, wrong: mphcuasvrnjzzakbgdtqeoylva
