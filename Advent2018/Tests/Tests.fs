@@ -3,7 +3,6 @@ module Tests
 open Expecto
 open Advent2018
 open Expecto.Flip
-
 let scanTestCase name deltas expected =
     testCase name <| fun _ ->
         Day1.scan deltas
@@ -38,6 +37,12 @@ let tests =
             testCase "checksum" <| fun _ ->
                 Day2.checksum ["abcdef"; "bababc";"abbcde";"abcccd";"aabcdd";"abcdee";"ababab"]
                 |> Expect.equal "" 12
+        ]
+        testList "day3" [
+            testCase "findArea" <| fun _ ->
+                Day3.parsePlans ["#1 @ 1,3: 4x4" ; "#2 @ 3,1: 4x4"; "#3 @ 5,5: 2x2"]
+                |> Day3.findArea
+                |> Expect.equal "finds overlap" 4
         ]
 
     ]

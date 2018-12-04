@@ -4,8 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Day2.fs" />
     <Compile Include="Day1.fs" />
+    <Compile Include="Day2.fs" />
+    <Compile Include="Day3.fs" />
     <None Include="Script.fsx" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
