@@ -19,14 +19,13 @@ module Day3 =
 
     let parsePlan line =
         // #1379 @ 542,442: 22x15
-        let m = Regex.Match(line, @"^#(\d+) @ (\d+),(\d+): (\d+)x(\d+)$")
-        if m.Success then
-            {
-                Raw = line
-                Id = m.Groups.[1].Value;
-                Rect = parseRect m
-            }
-        else failwith "could not parse plan"
+        match Regex.Match(line, @"^#(\d+) @ (\d+),(\d+): (\d+)x(\d+)$") with
+            | m when m.Success -> {
+                    Raw = line
+                    Id = m.Groups.[1].Value;
+                    Rect = parseRect m
+                }
+            | _ -> failwith "could not parse plan"
 
     let parsePlans lines =
         Seq.map parsePlan lines
@@ -37,12 +36,6 @@ module Day3 =
         |> File.ReadAllLines
         |> parsePlans
         )
-
-    let findOverlap a b =
-        Rectangle.Intersect(a, b)
-        |> function
-            | m when not m.IsEmpty -> Some(m)
-            | _ -> None
 
     let findOverlaps plan plans =
         plans
