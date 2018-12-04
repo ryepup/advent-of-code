@@ -48,7 +48,7 @@ module Day3 =
         plans
         |> Seq.filter (fun x -> not (x = plan))
         |> Seq.map (fun x -> (Rectangle.Intersect(plan.Rect, x.Rect)))
-        |> Seq.filter (fun x -> not x.IsEmpty)
+        |> Seq.filter (fun x -> not x.IsEmpty && x.Width > 0 && x.Height > 0)
 
     let toBits (rect:Rectangle) =
         Array2D.create rect.Height rect.Width true
@@ -72,4 +72,10 @@ module Day3 =
         |> array2DCollect
         |> Seq.sumBy Convert.ToInt32
 
+    let findDisjoint plans =
+        plans
+        |> Seq.filter (fun plan -> findOverlaps plan plans |> Seq.isEmpty)
+        |> Seq.head
 
+    let findDisjointId plans =
+        (findDisjoint plans).Id

@@ -43,6 +43,11 @@ let tests =
                 Day3.parsePlans ["#1 @ 1,3: 4x4" ; "#2 @ 3,1: 4x4"; "#3 @ 5,5: 2x2"]
                 |> Day3.findArea
                 |> Expect.equal "finds overlap" 4
+            testCase "findDisjoint" <| fun _ ->
+                Day3.parsePlans ["#1 @ 1,3: 4x4" ; "#2 @ 3,1: 4x4"; "#3 @ 5,5: 2x2"]
+                |> Day3.findDisjointId
+                |> Expect.equal "finds overlap" "3"
+
         ]
 
     ]
