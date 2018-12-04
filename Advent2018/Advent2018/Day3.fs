@@ -53,12 +53,12 @@ module Day3 =
     let toBits (rect:Rectangle) =
         Array2D.create rect.Height rect.Width true
 
-    let array2DFold folder state source =
-        let mutable acc = state
-        Array2D.iter
-            (fun x -> acc <- (folder acc x))
-            source
-        acc
+    let array2DCollect source =
+        seq {
+            for x in 0 .. Array2D.length1 source - 1 do
+                for y in 0 .. Array2D.length2 source - 1 do
+                    yield source.[x, y]
+        }
 
     let findArea plans =
         plans
@@ -69,5 +69,7 @@ module Day3 =
                 acc
                 )
             (Array2D.create 1000 1000 false)
-        |> array2DFold (fun acc x -> if x then acc + 1 else acc) 0
+        |> array2DCollect
+        |> Seq.sumBy Convert.ToInt32
+
 
