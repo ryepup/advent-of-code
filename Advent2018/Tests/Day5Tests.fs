@@ -32,4 +32,11 @@ let tests =
         testCase "solve1" <| fun _ ->
             Day5.solve1 Day5.polymer.Value
             |> Expect.equal "part one solution" 10804
+        testCase "shortest polymer" <| fun _ ->
+            Day5.solve2 "dabAcCaCBAcCcaDA"
+            |> Expect.equal "reacts fully" 4
+        testCase "solve2" <| fun _ ->
+            Day5.solve2 Day5.polymer.Value
+            |> Expect.equal "part two solution" 6650
+
     ]

@@ -3,7 +3,6 @@ namespace Advent2018
 open System
 open System.IO
 
-
 module Day5 =
 
     let polymer = lazy (File.ReadAllLines("Advent2018/Advent2018/day5.txt") |> Seq.exactlyOne )
@@ -23,6 +22,9 @@ module Day5 =
                 | _ -> char :: acc
         ) List.empty<char>
 
+    let filteredPolymer (polymer:seq<char>) (ignores:Set<char>) =
+        Seq.filter (ignores.Contains >> not) polymer
+
     let reactString (polymer:string) =
         react polymer
         |> Array.ofSeq
@@ -31,3 +33,13 @@ module Day5 =
     let solve1 polymer =
         reactString polymer
         |> Seq.length
+
+    let makeIgnoreSet c =
+        new Set<char>([(Char.ToLower c); (Char.ToUpper c)])
+
+    let solve2 polymer =
+        Seq.distinctBy Char.ToLower polymer
+        // TODO: can this easily be parallelized?
+        |> Seq.map (makeIgnoreSet >> (filteredPolymer polymer) >> react >> Seq.length)
+        |> Seq.sort
+        |> Seq.head
