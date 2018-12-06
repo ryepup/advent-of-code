@@ -12,6 +12,7 @@
   <ItemGroup>
     <Compile Include="Tests.fs" />
     <Compile Include="Day4Tests.fs" />
+    <Compile Include="Day5Tests.fs" />
     <Compile Include="Main.fs" />
     <None Include="App.config" />
   </ItemGroup>
