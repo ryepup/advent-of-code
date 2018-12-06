@@ -128,7 +128,6 @@ module Day4 =
         |> Seq.reduce (Seq.map2 ( + ))
         |> Seq.mapi (fun i asleep -> (i, asleep))
         |> Seq.sortByDescending (fun (_,n) -> n)
-        |> Seq.map (fun (i,_) -> i)
         |> Seq.head
 
     let solve1 guardLogs =
@@ -138,10 +137,21 @@ module Day4 =
         |> Seq.sortByDescending (fun (_, totalAsleep, _) -> totalAsleep)
         |> Seq.head
         |> function
-            | ((GuardId id), _, min) -> (min * id)
+            | ((GuardId id), _, (min, _)) -> (min * id)
+
+    let solve2 guardLogs =
+        Seq.groupBy (fun x -> x.Id) guardLogs
+        |> Seq.map (fun (id, logs) ->
+            (id, sleepiestMinute logs))
+        |> Seq.sortByDescending (fun (_, (_,n)) -> n)
+        |> Seq.head
+        |> function
+            | ((GuardId id), (min, _)) -> (min * id)
+
 
 (*
 
 Day4.solve1 Day4.guardLogs.Value
+Day4.solve2 Day4.guardLogs.Value
 
 *)

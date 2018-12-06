@@ -52,6 +52,14 @@ let tests =
                 Day4.parseLogEntries lines
                 |> Day4.makeGuardLogs
                 |> Day4.solve1
-                |> Expect.equal "counts sleeping minutes" 240
+                |> Expect.equal "counts most sleepiest guard's minute" 240
+
+            testCase "solve2" <| fun _ ->
+                Day4.parseLogEntries lines
+                |> Day4.makeGuardLogs
+                |> Day4.solve2
+                |> Expect.equal "counts most slept minute" 4455
+
         ]
+
     ]
