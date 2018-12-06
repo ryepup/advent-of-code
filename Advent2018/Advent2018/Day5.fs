@@ -14,20 +14,17 @@ module Day5 =
     let hasReaction a b =
         isSameLetter a b && a <> b
 
-    let rec react (polymer:list<char>) =
-        match polymer with
-            | [] -> failwith "can't handle empty"
-            | [_] -> polymer
-            | head::tail ->
-                match react tail with
-                    | [] -> [head]
-                    | [x] -> [head;x]
-                    | first::rest when hasReaction head first -> rest
-                    | rest -> head::rest
+    let react (polymer:seq<char>) =
+        Seq.rev polymer
+        |> Seq.fold (fun acc char ->
+            match acc with
+                | [] -> [char]
+                | last::rest when hasReaction last char -> rest
+                | _ -> char :: acc
+        ) List.empty<char>
 
     let reactString (polymer:string) =
-        List.ofSeq polymer
-        |> react
+        react polymer
         |> Array.ofSeq
         |> System.String
 

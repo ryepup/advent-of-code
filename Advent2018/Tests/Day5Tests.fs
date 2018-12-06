@@ -31,5 +31,5 @@ let tests =
         ]
         testCase "solve1" <| fun _ ->
             Day5.solve1 Day5.polymer.Value
-            |> Expect.equal "part one solution" 10
+            |> Expect.equal "part one solution" 10804
     ]
