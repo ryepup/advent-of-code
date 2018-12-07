@@ -3,7 +3,7 @@ namespace Advent2018
 open System
 open System.IO
 open System.Text.RegularExpressions
-
+open Advent2018.Utils
 
 module Day4 =
 
@@ -11,12 +11,6 @@ module Day4 =
     let (|Contains|_|) search input =
         match Regex.IsMatch(input, search, RegexOptions.IgnoreCase) with
             | true -> Some(true)
-            | _ -> None
-
-    let (|Regex|_|) pattern input =
-        match Regex.Match(input, pattern) with
-            | m when m.Success ->
-                Some(List.tail [for g in m.Groups -> g.Value])
             | _ -> None
 
     type GuardId = GuardId of id:int
