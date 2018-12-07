@@ -68,4 +68,15 @@ bbb.ffffF
             points.Value
             |> solve1
             |> Expect.equal "finds" ({X=200; Y=250}, 3223)
+
+        testCase "solve2" <| fun _ ->
+            Seq.map parsePoint lines
+            |> solve2 32
+            |> Expect.equal "finds" 16
+
+        testCase "solve2 full data" <| fun _ ->
+            Tests.skiptest "too slow for normal runs"
+            points.Value
+            |> solve2 10000
+            |> Expect.equal "finds" 40495
     ]

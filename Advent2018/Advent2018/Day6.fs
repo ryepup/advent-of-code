@@ -132,4 +132,14 @@ module Day6 =
         |> Seq.map (fun (c,ps) -> (c, Seq.length ps))
         |> Seq.maxBy (fun (_,n) -> n)
 
+    let solve2 n (points:seq<Point>) =
+        let bounds = getBounds points
+        let manhattanSum p =
+            points |> Seq.sumBy (manhattanDist p)
+
+        Seq.allPairs [0..bounds.X] [0..bounds.Y]
+        |> Seq.map (fun (x,y) -> {X=x;Y=y})
+        |> Seq.filter (fun p -> (manhattanSum p) < n)
+        |> Seq.length
+
     let points = lazy (File.ReadAllLines("Advent2018/Advent2018/day6.txt") |> Seq.map parsePoint )
