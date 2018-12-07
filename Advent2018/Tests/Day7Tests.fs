@@ -3,7 +3,6 @@ module Day7Tests
 open Expecto
 open Advent2018.Day7
 open Expecto.Flip
-open Day4Tests
 
 let lines = [
     "Step C must be finished before step A can begin."
@@ -17,7 +16,7 @@ let lines = [
 
 [<FTests>]
 let tests =
-    testList "day6" [
+    testList "day7" [
         testCase "parse" <| fun _ ->
             parse lines.[0]
             |> Expect.equal "parses" {Id='A'; DependsOn='C'}
