@@ -3,8 +3,6 @@ module Day6Tests
 open Expecto
 open Advent2018.Day6
 open Expecto.Flip
-open Day4Tests
-
 
 let lines = [
     "1, 1" // A
