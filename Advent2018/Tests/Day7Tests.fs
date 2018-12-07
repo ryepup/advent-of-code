@@ -14,6 +14,12 @@ let lines = [
     "Step F must be finished before step E can begin."
 ]
 
+let durationTestCase min char expected =
+    testCase (sprintf "duration %i %c" min char) <| fun _ ->
+        duration min char
+        |> Expect.equal "calculates correct duration" expected
+
+
 [<FTests>]
 let tests =
     testList "day7" [
@@ -31,5 +37,20 @@ let tests =
             steps.Value
             |> findPath
             |> Expect.equal "finds the right one" "MNOUBYITKXZFHQRJDASGCPEVWL"
+
+        durationTestCase 60 'A' 61
+        durationTestCase 10 'B' 12
+        durationTestCase 0 'C' 3
+
+        testCase "assemble" <| fun _ ->
+            lines
+            |> Seq.map parse
+            |> assemble 0 2
+            |> Expect.equal "Find the right total" 15
+
+        testCase "assemble real data" <| fun _ ->
+            steps.Value
+            |> assemble 60 5
+            |> Expect.equal "Find the right total" 893
 
     ]
