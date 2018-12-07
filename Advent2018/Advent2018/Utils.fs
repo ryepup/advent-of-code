@@ -11,6 +11,11 @@ module Utils =
        if System.Int32.TryParse(str, &intvalue) then Some(intvalue)
        else None
 
+    let (|Char|_|) (str: string) =
+        match Seq.toList str with
+        | [x] -> Some(x)
+        | _ -> None
+
     let (|Regex|_|) pattern input =
         match Regex.Match(input, pattern) with
             | m when m.Success ->
